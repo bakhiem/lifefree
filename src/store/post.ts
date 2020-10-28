@@ -18,13 +18,15 @@ export default {
       try {
         const response =  await firebase.firestore().collection('posts').get()
         store.commit('SET_LIST_POST', util.getDataFromDocs(response))
+        return Promise.resolve({})
       } catch(err) {
         console.log(err)
       }
     },
-    submit(store: any, bean: any) {
-      console.log(bean)
-      firebase.firestore().collection('posts').add(bean)
+    async submit(store: any, bean: any) {
+      // console.log(bean)
+      const response = await firebase.firestore().collection('posts').add(bean)
+      return Promise.resolve(response.id)
     }
   }
 }

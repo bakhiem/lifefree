@@ -4,6 +4,8 @@
   min-height: 40vh;
   border: 1px solid #dbdbdb!important;
   border-top: none!important;
+  max-height: 70vh;
+  overflow-y: auto;
 }
 .post-content{
   width: 80%;
@@ -28,4 +30,7 @@
 .list-post{
   width: 80%;
   margin: auto;
+}
+p.v-toast-text{
+  font-family: "Roboto", sans-serif;
 }

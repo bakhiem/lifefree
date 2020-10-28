@@ -6,6 +6,10 @@ import store from "./store";
 import vuetify from "./plugins/vuetify";
 import firebase from "firebase";
 import '@/styles/index.scss'
+import VueToast from 'vue-toast-notification';
+
+import 'vue-toast-notification/dist/theme-default.css';
+// window.Vue = Vue
 Vue.config.productionTip = false;
 
 const firebaseConfig = {
@@ -20,6 +24,9 @@ const firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 firebase.analytics();
+Vue.use(VueToast,{
+  position: 'top-right'
+});
 new Vue({
   router,
   store,

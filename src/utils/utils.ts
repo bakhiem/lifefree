@@ -1,6 +1,7 @@
 
 const utils = {
   getDataFromDoc: (res: any) => {
+    console.log(res)
     const data = res.data()
     data.id = res.id
     return data

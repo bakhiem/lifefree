@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.b25b657f4a32a14c861fbadbccceeff1.js"
+  "/precache-manifest.fbff966d08eaf52ea12ed8d59c0371e9.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "life-free"});

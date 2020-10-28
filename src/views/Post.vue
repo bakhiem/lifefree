@@ -45,19 +45,7 @@ export default {
   methods: {
     ...mapActions("post", ["getAllPost"]),
     init() {
-      if (this.listPost && this.listPost.length > 0) {
-        this.post = this.listPost[
-          Math.floor(Math.random() * this.listPost.length)
-        ];
-      } else {
-        this.getAllPost().then(() => {
-          if (this.listPost.length > 0) {
-            this.post = this.listPost[
-              Math.floor(Math.random() * this.listPost.length)
-            ];
-          }
-        });
-      }
+      this.getAllPost()
     },
     getSubtitle(content) {
       return content.replace(/(([^\s]+\s\s*){50})(.*)/,"$1…");
