@@ -3,8 +3,11 @@
     <v-container>
       <v-row>
         <v-col>
-          <v-sheet min-height="70vh" rounded="lg" class="pt-5">
-            <div class="post-content" v-html="post.content"></div>
+          <v-sheet min-height="80vh" rounded="lg" class="pt-5 pb-2">
+            <div v-if="post">
+              <h3 class="text-center pb-4">{{post.title}}</h3>
+              <div class="post-content" v-html="post.content"></div>
+            </div>
           </v-sheet>
         </v-col>
       </v-row>
@@ -30,6 +33,11 @@ export default {
   methods: {
     ...mapActions('post', ['getAllPost']),
     init() {
+      window.scrollTo(0,0)
+      if(this.$route.params.id) {
+        this.post = this.listPost.filter(item => item.id === this.$route.params.id)[0]
+        return
+      }
       if (this.listPost && this.listPost.length > 0){ 
         this.post = this.listPost[Math.floor(Math.random() * this.listPost.length)]
       } else {

@@ -56,11 +56,17 @@ export default {
         label: 'Đăng bài',
         value: 'post'
       },
+      {
+        label: 'Về chúng tôi',
+        value: 'about-us'
+      },
     ],
   }),
   methods: {
     redirect(link) {
-      this.$router.push({ name: link })
+      if(this.$route.name !== link) {
+        this.$router.push({ name: link }).catch((err) => {console.log(err)})
+      }
     }
   }
 };
