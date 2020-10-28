@@ -5,7 +5,7 @@
         <v-col>
           <v-sheet min-height="80vh" rounded="lg" class="pt-5 pb-2">
             <div class="list-post">
-              <v-skeleton-loader v-if="listPost.length === 0"
+              <v-skeleton-loader v-if="listPost && listPost.length === 0"
                 class="mx-auto"
                 type="card"
               ></v-skeleton-loader>

@@ -14,15 +14,15 @@ export default {
     },
   },
   actions: {
-    async getAllPost({ commit }) {
+    async getAllPost(store: any) {
       try {
         const response =  await firebase.firestore().collection('posts').get()
-        commit('SET_LIST_POST', util.getDataFromDocs(response))
+        store.commit('SET_LIST_POST', util.getDataFromDocs(response))
       } catch(err) {
         console.log(err)
       }
     },
-    submit({ commit }, bean: any) {
+    submit(store: any, bean: any) {
       console.log(bean)
       firebase.firestore().collection('posts').add(bean)
     }
