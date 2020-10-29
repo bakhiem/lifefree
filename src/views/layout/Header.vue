@@ -95,8 +95,12 @@ export default {
       }
     },
     searchPost(search) {
+      // debounceSearch(search)
       console.log(search)
-    } 
+    },
+    // debounceSearch: debounce(function(new_) {
+      
+    // }, 500),
   }
 };
 </script>
