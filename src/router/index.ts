@@ -11,6 +11,11 @@ const routes: Array<RouteConfig> = [
     component: Home
   },
   {
+    path: "/post/:id",
+    name: "one-post",
+    component: Home
+  },
+  {
     path: "/tat-ca-bai-viet",
     name: "list-post",
     component: () => import("@/views/Post.vue")

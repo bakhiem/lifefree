@@ -51,7 +51,7 @@ export default {
       return content.replace(/(([^\s]+\s\s*){50})(.*)/,"$1…");
     },
     readPost(id) {
-      this.$router.push({ name: 'home', params: {
+      this.$router.push({ name: 'one-post', params: {
         id
       }}).catch((err) => {console.log(err)})
     }
