@@ -4,11 +4,18 @@
       <v-row>
         <v-col>
           <v-sheet class="pr-5 pl-5 pt-2 pb-2" min-height="80vh" rounded="lg">
-            <div class="pb-5">
+            <div class="pb-3">
               <v-text-field
                 v-model="title"
                 label="Đặt tiêu đề cho bài viết"
                 :rules="rules"
+                hide-details="auto"
+              ></v-text-field>
+            </div>
+            <div class="pb-5">
+              <v-text-field
+                v-model="author"
+                label="Tác giả"
                 hide-details="auto"
               ></v-text-field>
             </div>
@@ -26,13 +33,21 @@
 </template>
 
 <script>
+
 // @ is an alias to /src
 import Vue from 'vue'
 import { mapActions, mapGetters } from "vuex";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import "@ckeditor/ckeditor5-build-classic/build/translations/vi";
 import CKEditor from "@ckeditor/ckeditor5-vue";
-// import MyUploadImage from '@/utils/uploadImage';
+import MyUploadImage from '@/utils/uploadImage';
+
+function imageUploader(editor) { 
+  editor.plugins.get('FileRepository').createUploadAdapter = function(loader) {
+    // Configure the URL to the upload script in your back-end here!
+    return new MyUploadImage(loader)
+  }
+}
 export default {
   name: "CreatePost",
   components: {
@@ -41,6 +56,7 @@ export default {
   data: () => ({
     editor: ClassicEditor,
     editorData: "",
+    author: '',
     editorConfig: {
       language: "vi",
       alignment: {
@@ -135,8 +151,8 @@ export default {
           "tableProperties",
           "tableCellProperties"
         ]
-      }
-      // extraPlugins: [this.iamgeUploader]
+      },
+      extraPlugins: [imageUploader]
     },
     title: "",
     rules: [value => !!value || "Bắt buộc."]
@@ -154,7 +170,7 @@ export default {
       const imgSrc = firstImage ? firstImage.src : "";
       const dataToSubmit = {
         content: this.editorData,
-        author: "khiemnb2705@gmail.com",
+        author: this.author,
         createdAt: new Date().toISOString(),
         title: this.title,
         thumbnail: imgSrc
@@ -179,13 +195,7 @@ export default {
           editor.ui.view.toolbar.element,
           editor.ui.getEditableElement()
         );
-    }
-    // iamgeUploader(editor) { 
-    // editor.plugins.get('FileRepository').createUploadAdapter = function(loader) {
-    //   // Configure the URL to the upload script in your back-end here!
-    //   return new MyUploadImage(loader)
-    // }
-    // }
+    }, 
   }
 };
 </script>

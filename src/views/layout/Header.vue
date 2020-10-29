@@ -65,6 +65,7 @@
           hide-details
           solo-inverted
           style="max-width: 300px;"
+          @input="searchPost"
         />
       </v-row>
     </v-container>
@@ -76,7 +77,8 @@
     mapGetters,
     mapMutations,
     mapState
-  } from 'vuex'
+  } from 'vuex';
+  import { debounce } from 'lodash';
 export default {
   name: "Header",
   data: () => ({}),
@@ -91,7 +93,10 @@ export default {
           console.log(err);
         });
       }
-    }
+    },
+    searchPost(search) {
+      console.log(search)
+    } 
   }
 };
 </script>
